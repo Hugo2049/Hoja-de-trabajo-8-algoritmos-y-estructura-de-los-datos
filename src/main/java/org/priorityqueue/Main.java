@@ -5,7 +5,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.PriorityQueue;
 
+/**
+ * Clase principal que lee un archivo de pacientes, los organiza en una cola de prioridad y muestra el orden de atención.
+ */
 public class Main {
+
+    /**
+     * Método principal que inicia el programa.
+     * @param args Los argumentos de la línea de comandos (no se utilizan en este programa).
+     */
     public static void main(String[] args) {
         String filePath = "src/main/java/org/example/pacientes.txt";
 
@@ -27,6 +35,12 @@ public class Main {
         }
     }
 
+    /**
+     * Lee los datos de los pacientes desde un archivo y los devuelve en una cola de prioridad.
+     * @param filePath La ruta del archivo que contiene los datos de los pacientes.
+     * @return Una cola de prioridad de pacientes leídos desde el archivo.
+     * @throws IOException Si ocurre un error de lectura del archivo.
+     */
     private static PriorityQueue<Paciente> leerPacientes(String filePath) throws IOException {
         PriorityQueue<Paciente> pacientesQueue = new PriorityQueue<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -48,4 +62,3 @@ public class Main {
         return pacientesQueue;
     }
 }
-

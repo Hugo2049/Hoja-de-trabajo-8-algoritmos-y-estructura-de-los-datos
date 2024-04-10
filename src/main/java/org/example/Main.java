@@ -5,7 +5,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Vector;
 
+/**
+ * Clase principal que lee un archivo de pacientes, los organiza en un montículo y muestra el orden de atención.
+ */
 public class Main {
+
+    /**
+     * Método principal que inicia el programa.
+     * @param args Los argumentos de la línea de comandos (no se utilizan en este programa).
+     */
     public static void main(String[] args) {
         String filePath = "src/main/java/org/example/Pacientes.txt";
 
@@ -29,7 +37,13 @@ public class Main {
         }
     }
 
-    private static Vector<Paciente> leerPacientes(String filePath) throws IOException {
+    /**
+     * Lee los datos de los pacientes desde un archivo y los devuelve en un vector.
+     * @param filePath La ruta del archivo que contiene los datos de los pacientes.
+     * @return Un vector de pacientes leídos desde el archivo.
+     * @throws IOException Si ocurre un error de lectura del archivo.
+     */
+    public static Vector<Paciente> leerPacientes(String filePath) throws IOException {
         Vector<Paciente> pacientes = new Vector<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
 

@@ -2,13 +2,24 @@ package org.example;
 
 import java.util.Vector;
 
+/**
+ * Una implementación de montículo binario utilizando un Vector como base de datos.
+ * @param <E> El tipo de elementos que se almacenarán en el montículo, deben ser comparables.
+ */
 public class VectorHeap<E extends Comparable<E>> {
-    protected Vector<E> data;
+    protected Vector<E> data; // Vector que almacena los elementos del montículo
 
+    /**
+     * Constructor que crea un VectorHeap vacío.
+     */
     public VectorHeap() {
         data = new Vector<>();
     }
 
+    /**
+     * Constructor que crea un VectorHeap a partir de un vector dado.
+     * @param v El vector que contiene los elementos a añadir al montículo.
+     */
     public VectorHeap(Vector<E> v) {
         int i;
         data = new Vector<>(v.size());
@@ -17,18 +28,37 @@ public class VectorHeap<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * Obtiene el índice del padre de un nodo en el montículo.
+     * @param i El índice del nodo.
+     * @return El índice del padre del nodo.
+     */
     protected static int parent(int i) {
         return (i - 1) / 2;
     }
 
+    /**
+     * Obtiene el índice del hijo izquierdo de un nodo en el montículo.
+     * @param i El índice del nodo.
+     * @return El índice del hijo izquierdo del nodo.
+     */
     protected static int left(int i) {
         return 2 * i + 1;
     }
 
+    /**
+     * Obtiene el índice del hijo derecho de un nodo en el montículo.
+     * @param i El índice del nodo.
+     * @return El índice del hijo derecho del nodo.
+     */
     protected static int right(int i) {
         return (2 * i + 1) + 1;
     }
 
+    /**
+     * Realiza el proceso de flotación hacia arriba para mantener la propiedad de montículo.
+     * @param leaf El índice del nodo a flotar hacia arriba.
+     */
     protected void percolateUp(int leaf) {
         int parent = parent(leaf);
         E value = data.get(leaf);
@@ -40,11 +70,19 @@ public class VectorHeap<E extends Comparable<E>> {
         data.set(leaf, value);
     }
 
+    /**
+     * Añade un nuevo elemento al montículo.
+     * @param value El elemento a añadir.
+     */
     public void add(E value) {
         data.add(value);
         percolateUp(data.size() - 1);
     }
 
+    /**
+     * Realiza el proceso de hundimiento hacia abajo a partir de la raíz para mantener la propiedad de montículo.
+     * @param root El índice del nodo raíz.
+     */
     protected void pushDownRoot(int root) {
         int heapSize = data.size();
         E value = data.get(root);
@@ -68,6 +106,10 @@ public class VectorHeap<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * Elimina y devuelve el elemento mínimo del montículo.
+     * @return El elemento mínimo del montículo, o null si el montículo está vacío.
+     */
     public E remove() {
         if (data.size() == 0) return null;
         E minVal = data.get(0);
@@ -77,4 +119,3 @@ public class VectorHeap<E extends Comparable<E>> {
         return minVal;
     }
 }
-
